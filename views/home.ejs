@@ -1,0 +1,89 @@
+<%- include('includes/head.ejs') %>
+
+<body id="page-top" style="background-color: rgb(228, 235, 238);">
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+
+                <%- include('includes/navigation.ejs') %>
+
+				<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+						<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+						<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+					</ol>
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="./images/7.jpg" class="d-block w-100" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h1>Welcome to SocietyBoard</h1>
+								<p>Stay updated with all upcoming and ongoing events in your college!</p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<img src="./images/4.jpg" class="d-block w-100" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h1>Welcome to SocietyBoard</h1>
+								<p>Stay updated with all upcoming and ongoing events in your college!</p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<img src="./images/5.jpg" class="d-block w-100" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h1>Welcome to SocietyBoard</h1>
+								<p>Stay updated with all upcoming and ongoing events in your college!</p>
+							</div>
+						</div>
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</a>
+					<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</a>
+				</div>
+
+
+            </div>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <ul class="event-list">
+		<% if (events.length > 0) { %>
+			<% for (let event of events) { %>
+				<li class="event-list-item">
+					<div class="row" style="padding: 20px;margin: 0 auto;width: 70%;">
+						<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" style="padding:0px;">
+							<div style="background-image:url(&quot;/<%= event.poster %>&quot;);height:50vh;background-repeat:no-repeat;background-size:cover;background-position:center;"></div>
+						</div>
+						<div class="w-100 d-sm-block d-md-none d-lg-none d-xl-none"></div>
+						<div class="col" style="padding:0px;">
+							<div class="card" style="background-color:rgba(195, 205, 207, 0.733)">
+								<div class="card-body" style="height:50vh;">
+									<h4><strong class="d-inline-block mb-2 text-primary"><%= event.societyName %></strong></h4>
+									<h2 class="card-title" style="color: black;"><strong><%= event.eventName %></strong></h2>
+									<div class="row">
+										<div class="col" style="color: rgb(78, 76, 76);"><em><%= event.startDate %></em></div>
+									</div>
+									<p class="card-text" style="color: black;"><%= event.eventDesc %></p><hr>
+									<a class="card-link link-primary" href="<%= event.website %>">Society Website</a><a class="card-link link-primary" href="<%= event.discord %>">Society Discord</a>
+									
+								</div>
+							</div> 
+						</div>
+					</div>
+				</li>
+			<% } %>
+		<% } else { %>
+			<div class="inline">
+				<h1 class="display-2 alert alert-dark custom-1" style="color: black;">No events going on right now!</h1>
+			</div>
+		<% } %>
+	</ul>
+	<!-- <div class="inline">
+		<h1 class="display-2 alert alert-dark custom-1" style="color: black;">No events going on right now!</h1>
+	</div> -->
+
+    <%- include('includes/end.ejs') %>

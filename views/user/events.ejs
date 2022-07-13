@@ -1,0 +1,88 @@
+<%- include('../includes/head.ejs') %>
+
+<body style="background-color: rgb(228, 235, 238);">
+   <%- include('../includes/navigation.ejs') %>
+   <div class=" d-grid gap-2 col-2 mx-auto">
+        <!-- <button type="button" class="btn btn-success">Add Event</button> -->
+        <a href="/user/createEvent" class="btn btn-success">Add Event</a>
+   </div>
+
+     <!-- Button trigger modal -->
+    <input type="hidden" class="btn btn-primary" data-bs-toggle="<%= eventIsDeleted ? modal : '' %>" data-bs-target="#exampleModal">
+  
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="color: black;">Event Deleted!</h5>
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            </div>
+            <div class="modal-body">
+            ...
+            </div>
+            <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+            </div> -->
+        </div>
+        </div>
+    </div>
+
+    <ul>
+		<% if (events.length > 0) { %>
+            <% for (let event of events) { %>
+                <li>
+                    <div class="row" style="padding: 20px;margin: 0 auto;width: 70%;">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" style="padding:0px;">
+                            <div style="background-image:url(&quot;/<%= event.poster %>&quot;);height:50vh;background-repeat:no-repeat;background-size:cover;background-position:center;"></div>
+                        </div>
+                        <div class="w-100 d-sm-block d-md-none d-lg-none d-xl-none"></div>
+                        <div class="col" style="padding:0px;">
+                            <div class="card" style="background-color:rgba(195, 205, 207, 0.733)">
+                                <div class="card-body" style="height:50vh;">
+                                    <h4><strong class="d-inline-block mb-2 text-primary"><%= societyName %></strong></h4>
+									<h2 class="card-title" style="color: black;"><strong><%= event.eventName %></strong></h2>
+                                    <div class="row">
+										<div class="col" style="color: rgb(78, 76, 76);"><em><%= event.startDate %></em></div>
+									</div>
+                                    <p class="card-text" style="color: black;"><%= event.eventDesc %></p><hr>
+									<a class="card-link link-primary" href="<%= event.website %>">Society Website</a><a class="card-link link-primary" href="<%= event.discord %>">Society Discord</a>
+                                    
+                                    <div class="row">
+                                        <div class="col">
+                                            <div style="text-align: end;" class="btn-group" role="group" style="float: inline-end;">
+                                                <!-- <form action="">
+                                                    <input type="hidden" name="eventId" value="<% event.eventId %>">
+                                                    <input type="hidden" name="societyId" value="<% societyId %>">
+                                                    <button class="btn btn-primary" type="button" style="background: var(--bs-primary);">
+                                                        Edit
+                                                    </button>
+                                                </form> -->
+                                                <a href="/user/editEvent/<%= event.eventId %>" class="btn btn-primary">Edit</a>
+                                                
+                                                <form method="POST" action="/user/deleteEvent">
+                                                    
+                                                    <input type="hidden" name="eventId" value="<%= event.eventId %>">
+                                                    <input type="hidden" name="societyId" value="<%= event.societyId %>">
+                                                    <button class="btn btn-primary" type="submit" style="background: var(--bs-red);" data-bs-toggle= "modal" data-bs-target="#exampleModal">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                <li>
+			<% } %>
+        <% } else { %>
+            <div class="inline" style="background: linear-gradient(var(--bs-primary) 15%, #48ccff);">
+				<h1 class="display-2 alert alert-dark custom-1" style="color: black;">No events created yet!</h1>
+			</div>
+        <% } %>
+    </ul>
+
+<%- include('../includes/end.ejs') %>

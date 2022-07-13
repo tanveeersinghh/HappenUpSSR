@@ -1,0 +1,41 @@
+.left {
+	float: left;
+	width: 100px;
+}
+
+.right {
+	overflow: auto;
+}
+
+input.invalid,
+textarea.invalid {
+	border-color: red;
+}
+
+.user-message {
+	margin: auto;
+	width: 90%;
+	border: 1px solid #4771fa;
+	padding: 0.5rem;
+	border-radius: 3px;
+	background: #b9c9ff;
+	text-align: center;
+}
+
+.user-message--error {
+	border-color: red;
+	background: rgb(255, 176, 176);
+	color: red;
+}
+
+.custom-1 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
+}
+/* 
+div.inline {
+	display: inline-block;
+	vertical-align: middle;
+} */

@@ -1,0 +1,60 @@
+<%- include('../includes/head.ejs') %>
+
+<body id="page-top">
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper" style="background: linear-gradient(var(--bs-primary) 15%, #48ccff);">
+            <div id="content">
+                <%- include('../includes/navigation.ejs') %>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="card shadow mb-3" style="width: 50rem;margin: 0 auto;">
+                            <div class="card-body">
+                                <div class="container-fluid" style="text-align: center;">
+                                    <h3 class="text-dark mb-4">Create Society</h3>
+                                </div>
+                                <form method="POST" action="/user/createSociety">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group mb-3"><label class="form-label">Society Name</label><input class="form-control form-control <%= validationErrors.find((e) => e.param === 'societyName') ? 'invalid' : '' %>" type="text" required="" minlength="3" name="societyName" value="<% oldInput.societyName %>"></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group mb-3"><label class="form-label">Society Creation Date</label><input class="form-control form-control <%= validationErrors.find((e) => e.param === 'dateEst') ? 'invalid' : '' %>" required="" inputmode="date" pattern="date" type="date" name="dateEst" value="<% oldInput.dateEst %>"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group mb-3"><label class="form-label">Description</label><input class="form-control form-control <%= validationErrors.find((e) => e.param === 'societyDesc') ? 'invalid' : '' %>" type="text" required="" minlength="5" maxlength="500" name="societyDesc" value="<% oldInput.societyDesc %>"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group mb-3"><label class="form-label">Website Link</label><input class="form-control form-control <%= validationErrors.find((e) => e.param === 'societyName') ? 'invalid' : '' %>" type="text" inputmode="url" name="website"  value="<% oldInput.website %>"></div>
+                                                        <div class="form-group mb-3"><label class="form-label">VC Email</label><input class="form-control form-control <%= validationErrors.find((e) => e.param === 'user2Email') ? 'invalid' : '' %>" type="text" required="" placeholder="name@thapar.edu" inputmode="email" name="user2Email" value="<% oldInput.user2Email %>"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group mb-3"><label class="form-label">Discord Link</label><input class="form-control form-control <%= validationErrors.find((e) => e.param === 'discord') ? 'invalid' : '' %>" type="text" inputmode="url" name="discord" value="<% oldInput.discord %>"></div>
+                                                        <div class="form-group mb-3"><label class="form-label">AVC Email</label><input class="form-control form-control <%= validationErrors.find((e) => e.param === 'user3Email') ? 'invalid' : '' %>" type="text" placeholder="name@thapar.edu" inputmode="email" required="" name="user3Email" value="<% oldInput.user3Email %>"></div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="form-group mb-3"><label class="form-label">Logo</label><input class="form-control" type="file" accept="image/*" name="logo"></div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3" style="text-align: center;"><button class="btn btn-primary border rounded-pill" type="submit" style="width: 77.7625px;height: 36.8px;">Submit</button></div>
+                                    <% if (errorMessage) { %>
+                                        <div class="alert alert-danger alert-dismissible fade show"><%= errorMessage %><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+                                    <% } %>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../includes/end.ejs') %>

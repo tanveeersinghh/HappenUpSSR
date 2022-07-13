@@ -1,0 +1,46 @@
+<%- include('../includes/head.ejs') %>
+
+<body class="bg-gradient-primary" style="border-color: var(--bs-blue);background: linear-gradient(var(--bs-primary) 15%, #48ccff 100%), var(--bs-primary);">
+   <%- include('../includes/navigation.ejs') %>
+
+   <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-12 col-xl-10" style="background: rgb(255,255,255);">
+                <div class="card shadow-lg o-hidden border-0 my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-flex">
+                                <div class="flex-grow-1 bg-login-image" style="background-image: url(&quot;/assets/img/dogs/thapar.jpg&quot;);"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4">Create Account&nbsp;</h4>
+                                    </div>
+                                    
+                                    <form class="user" action="/auth/signup" method="POST">
+                                        <div class="mb-3"><input class="form-control form-control-user <%= validationErrors.find((e) => e.param === 'email') ? 'invalid' : '' %>" type="email" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" required value="<%= oldInput.email %>"></div>
+                                        <div class="mb-3"><input class="form-control form-control-user <%= validationErrors.find((e) => e.param === 'password') ? 'invalid' : '' %>" type="password" id="exampleInputPassword" placeholder="Password" name="password" required value="<%= oldInput.password %>"></div>
+                                        <div></div><input class="form-control form-control-user <%= validationErrors.find((e) => e.param === 'confirmPassword') ? 'invalid' : '' %>" type="password" placeholder="Confirm Password" name="confirmPassword" required value="<%= oldInput.confirmPassword %>">
+                                        <div class="mb-3">
+                                            <div class="custom-control custom-checkbox small"></div>
+                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: var(--bs-blue);color: var(--bs-light);">Signup</button>
+                                        <hr>
+                                        <hr>
+                                    </form>
+                                    
+                                    <div class="text-center"></div>
+                                    <% if (errorMessage) { %>
+                                        <div class="alert alert-danger alert-dismissible fade show"><%= errorMessage %><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../includes/end.ejs') %>
+

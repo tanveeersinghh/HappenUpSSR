@@ -1,0 +1,45 @@
+<%- include('../includes/head.ejs') %>
+
+<body id="page-top" style="background: radial-gradient(var(--bs-primary) 15%, #48ccff 100%);">
+    <%- include('../includes/navigation.ejs') %>
+
+    <div class="card shadow mb-3" style="width: 50rem;margin: 0 auto;">
+        <div class="card-body">
+            <div class="container-fluid">
+                <h3 class="text-dark mb-4" style="text-align: center;">Add Event</h3>
+            </div>
+            <form method="POST" action="/user/createEvent" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group mb-3"><label class="form-label">Event Name</label><input class="form-control form-control <%= validationErrors.find((e) => e.param === 'eventName') ? 'invalid' : '' %>" type="text" required minlength="3" name="eventName" value="<%= oldInput.eventName %>"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group mb-3"><label class="form-label">Description</label><input class="form-control form-control <%= validationErrors.find((e) => e.param === 'eventDesc') ? 'invalid' : '' %>" type="text" required minlength="5" maxlength="500" name="eventDesc" value="<%= oldInput.eventDesc %>"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group mb-3"><label class="form-label">Event Start Date&nbsp;</label><input class="form-control form-control <%= validationErrors.find((e) => e.param === 'startDate') ? 'invalid' : '' %>" required placeholder="dd-mm-yyyy" type="datetime-local" step="1" name="startDate"  value="<%= oldInput.startDate %>"></div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group mb-3"><label class="form-label">Event End Date</label><input class="form-control form-control <%= validationErrors.find((e) => e.param === 'endDate') ? 'invalid' : '' %>" required  placeholder="dd-mm-yyyy" type="datetime-local" step="1" name="endDate" value="<%= oldInput.endDate %>"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group mb-3"><label class="form-label">Poster</label><input class="form-control " type="file" accept="image/*" required name="poster"></div>
+                    </div>
+                </div>
+                <div class="mb-3" style="text-align: center;"><button class="btn btn-primary border rounded-pill" type="submit" style="width: 95.7625px;height: 36.8px;">Submit</button></div>
+                <% if (errorMessage) { %>
+                    <div class="alert alert-danger alert-dismissible fade show"><%= errorMessage %><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+                <% } %>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../includes/end.ejs') %>
+
+    
