@@ -21,7 +21,7 @@ module.exports = class Society {
 	save() {
 		// INSERT INTO `society-board`.`societies` (`societyId`, `societyName`) VALUES ('12', 'Hefe');
 		return db.execute(
-			'INSERT INTO `society-board`.societies (societyId, societyName, societyDesc, dateEst, website, discord) VALUES (?, ?, ?, ?, ?, ?)',
+			'INSERT INTO `societyboard`.societies (societyId, societyName, societyDesc, dateEst, website, discord) VALUES (?, ?, ?, ?, ?, ?)',
 			[
 				this.societyId,
 				this.societyName,
@@ -35,14 +35,14 @@ module.exports = class Society {
 
 	static findSocietyNameBySocietyId(societyId) {
 		return db.execute(
-			'SELECT societyName FROM `society-board`.societies WHERE societies.societyId = ?',
+			'SELECT societyName FROM `societyboard`.societies WHERE societies.societyId = ?',
 			[societyId]
 		);
 	}
 
 	static findWebsiteAndDiscordBySocietyId(societyId) {
 		return db.execute(
-			'SELECT website, discord FROM `society-board`.societies WHERE societies.societyId = ?',
+			'SELECT website, discord FROM `societyboard`.societies WHERE societies.societyId = ?',
 			[societyId]
 		);
 	}

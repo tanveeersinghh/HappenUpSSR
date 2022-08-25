@@ -122,7 +122,7 @@ exports.createEvent = (req, res, next) => {
 
 	const eventName = req.body.eventName;
 	//assuming frontend validation done
-	const poster = req.file.path;
+	const poster = req.file.path.replace("\\", "/");
 	console.log('poster:', poster);
 	const eventDesc = req.body.eventDesc;
 	const startDate = req.body.startDate;

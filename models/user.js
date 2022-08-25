@@ -12,7 +12,7 @@ module.exports = class User {
 	save() {
 		//returns a promise
 		return db.execute(
-			'INSERT INTO `society-board`.users (userId, email, password, groupId) VALUES (?, ?, ?, ?)',
+			'INSERT INTO `societyboard`.users (userId, email, password, groupId) VALUES (?, ?, ?, ?)',
 			[this.userId, this.email, this.password, this.groupId]
 		);
 	}
@@ -20,28 +20,28 @@ module.exports = class User {
 	static findByEmail(email) {
 		// return db.execute('SELECT * FROM users');
 		return db.execute(
-			'SELECT * FROM `society-board`.users WHERE users.email = ?',
+			'SELECT * FROM `societyboard`.users WHERE users.email = ?',
 			[email]
 		);
 	}
 
 	static findGroupIdByUserId(userId) {
 		return db.execute(
-			'SELECT groupId FROM `society-board`.users WHERE users.userId = ?',
+			'SELECT groupId FROM `societyboard`.users WHERE users.userId = ?',
 			[userId]
 		);
 	}
 
 	static findEmailByUserId(userId) {
 		return db.execute(
-			'SELECT email FROM `society-board`.users WHERE users.userId = ?',
+			'SELECT email FROM `societyboard`.users WHERE users.userId = ?',
 			[userId]
 		);
 	}
 
 	static insertGroupIdInUser1(groupId, userId) {
 		return db.execute(
-			'UPDATE `society-board`.users SET users.groupId = ? WHERE (users.userId = ?)',
+			'UPDATE `societyboard`.users SET users.groupId = ? WHERE (users.userId = ?)',
 			[groupId, userId]
 		);
 	}

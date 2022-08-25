@@ -34,7 +34,8 @@ const fileStorage = multer.diskStorage({
 		cb(null, 'images');
 	},
 	filename: (req, file, cb) => {
-		cb(null, new Date().toISOString() + '-' + file.originalname);
+		// cb(null, new Date().toISOString() + '-' + file.originalname);    -- for linux
+		cb(null, new Date().getTime() + '-' + file.originalname);   //   -- windows
 	},
 });
 const fileFilter = (req, file, cb) => {
@@ -62,6 +63,7 @@ app.use(
 );
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
+console.log(path.join(__dirname, 'images'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //*matches session with cookie if present

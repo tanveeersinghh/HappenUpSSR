@@ -24,7 +24,7 @@ module.exports = class Event {
 
 	save() {
 		return db.execute(
-			'INSERT INTO `society-board`.events (societyId, eventName, poster, eventDesc, startDate, endDate, website, discord) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+			'INSERT INTO `societyboard`.events (societyId, eventName, poster, eventDesc, startDate, endDate, website, discord) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
 			[
 				this.societyId,
 				this.eventName,
@@ -49,7 +49,7 @@ module.exports = class Event {
 		discord
 	) {
 		return db.execute(
-			'UPDATE `society-board`.events SET eventName = ?, poster = ?, eventDesc = ?, startDate = ?, endDate = ?, website = ?, discord = ? WHERE eventId = ?',
+			'UPDATE `societyboard`.events SET eventName = ?, poster = ?, eventDesc = ?, startDate = ?, endDate = ?, website = ?, discord = ? WHERE eventId = ?',
 			[
 				eventName,
 				poster,
@@ -65,27 +65,27 @@ module.exports = class Event {
 
 	static displayAllEvents() {
 		return db.execute(
-			'SELECT * FROM `society-board`.events WHERE events.startDate >= NOW() ORDER BY events.startDate ASC'
+			'SELECT * FROM `societyboard`.events WHERE events.startDate >= NOW() ORDER BY events.startDate ASC'
 		);
 	}
 
 	static findEventByEventId(eventId) {
 		return db.execute(
-			'SELECT * FROM `society-board`.events WHERE events.eventId = ?',
+			'SELECT * FROM `societyboard`.events WHERE events.eventId = ?',
 			[eventId]
 		);
 	}
 
 	static findEventsBySocietyId(societyId) {
 		return db.execute(
-			'SELECT * FROM `society-board`.events WHERE events.societyId = ? order by events.startDate asc',
+			'SELECT * FROM `societyboard`.events WHERE events.societyId = ? order by events.startDate asc',
 			[societyId]
 		);
 	}
 
 	static findByEventIdAndRemove(eventId) {
 		return db.execute(
-			'DELETE FROM `society-board`.events WHERE events.eventId = ?',
+			'DELETE FROM `societyboard`.events WHERE events.eventId = ?',
 			[eventId]
 		);
 	}
